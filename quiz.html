@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrushMatch - Quiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-animation"></div>
+    
+    <main class="container">
+        <div class="card glass page-enter" id="quiz-card">
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <p class="step-indicator">Question <span id="current-step">1</span>/5</p>
+
+            <h1 class="title quiz-title">About Your Crush 💭</h1>
+            <p class="subtitle quiz-subtitle">Answer honestly (or imaginatively 😉)</p>
+            
+            <div id="question-container" class="question-container">
+                <!-- Question content injected by JS -->
+                <h2 class="question-text" id="question-text">Loading...</h2>
+                <div class="options-grid" id="options-grid">
+                    <!-- Options injected by JS -->
+                </div>
+            </div>
+
+            <button class="cta-button" id="next-btn" disabled>Next &rarr;</button>
+        </div>
+    </main>
+    <script src="config.js"></script>
+    <script src="quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrushMatch - Result</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-animation"></div>
+    <div id="confetti-container"></div>
+    
+    <main class="container">
+        <div class="card glass page-enter result-card">
+            <h1 class="title">Your Match Result 💖</h1>
+            <p class="subtitle">Here’s what we found...</p>
+            
+            <div class="names-display">
+                ✨ <span id="your-name-display">You</span> ❤️ <span id="crush-name-display">Crush</span> ✨
+            </div>
+
+            <div class="score-container">
+                <svg class="progress-ring" width="160" height="160">
+                    <circle class="progress-ring__circle-bg" stroke="rgba(255,255,255,0.3)" stroke-width="12" fill="transparent" r="70" cx="80" cy="80"/>
+                    <circle class="progress-ring__circle" stroke="#ff1493" stroke-width="12" fill="transparent" r="70" cx="80" cy="80"/>
+                </svg>
+                <div class="score-text">
+                    <span id="score-number">0</span><span class="percent">%</span>
+                    <div class="heart-beat">💕</div>
+                </div>
+            </div>
+
+            <p class="result-message" id="result-message">Calculating compatibility...</p>
+            
+            <div class="action-buttons">
+                <button class="cta-button" id="share-btn">Share Result 📤</button>
+                <button class="secondary-button" id="retry-btn">Try Again 🔄</button>
+            </div>
+        </div>
+    </main>
+    <script src="config.js"></script>
+    <script src="result.js"></script>
+</body>
+</html>

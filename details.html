@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrushMatch - Your Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-animation"></div>
+    
+    <main class="container">
+        <div class="card glass page-enter">
+            <h1 class="title">Let’s Begin 💕</h1>
+            <p class="subtitle">Tell us about you and your crush</p>
+            
+            <form id="details-form">
+                <div class="input-group">
+                    <label for="your-name">Your Name</label>
+                    <input type="text" id="your-name" placeholder="Enter your name" autocomplete="off">
+                </div>
+                
+                <div class="input-group">
+                    <label for="crush-name">Your Crush’s Name</label>
+                    <input type="text" id="crush-name" placeholder="Enter your crush’s name 😌" autocomplete="off">
+                </div>
+                
+                <!-- Hidden inputs for potential future use or just structure -->
+                
+                <button type="submit" class="cta-button" id="next-btn" disabled>Next &rarr;</button>
+            </form>
+        </div>
+    </main>
+    <script src="config.js"></script>
+    <script src="details.js"></script>
+</body>
+</html>

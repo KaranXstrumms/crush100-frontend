@@ -35,10 +35,11 @@
     </header>
 
     <!-- Main Hero Section -->
-    <section class="hero">
+    <section class="hero" style="min-height: 80vh; display: flex; flex-direction: column; justify-content: center;">
         <!-- Floating hearts for decoration -->
-        <div class="floating-heart" style="top: 10%; left: 5%; font-size: 3rem;">💖</div>
-        <div class="floating-heart" style="bottom: 20%; right: 10%; font-size: 2rem; animation-delay: 2s;">💘</div>
+        <div class="floating-heart" style="top: 15%; left: 8%; font-size: 3rem;">💖</div>
+        <div class="floating-heart" style="bottom: 25%; right: 12%; font-size: 2.5rem; animation-delay: 2s;">💘</div>
+        <div class="floating-heart" style="top: 40%; right: 5%; font-size: 1.5rem; animation-delay: 4s;">✨</div>
 
         <div class="badge">✨ AI-POWERED VIBES</div>
         
@@ -50,26 +51,11 @@
             Discover your cosmic connection in seconds using our AI vibe check. Minimalist, magical, and 100% Gen-Z approved.
         </p>
 
-        <!-- Main Input Card -->
-        <div class="input-card">
-            <div class="input-grid">
-                <!-- Group 1: Your Name -->
-                <div class="input-group">
-                    <label class="label" for="name1">Your Name</label>
-                    <input type="text" id="name1" class="input-field" placeholder="e.g. Alex" autocomplete="off">
-                </div>
-
-                <!-- Divider -->
-                <div class="heart-divider">💖</div>
-
-                <!-- Group 2: Crush Name -->
-                <div class="input-group">
-                    <label class="label" for="name2">Crush's Name</label>
-                    <input type="text" id="name2" class="input-field" placeholder="e.g. Jordan" autocomplete="off">
-                </div>
-            </div>
-
-            <button id="start-btn" class="cta-button">Check Compatibility 🚀</button>
+        <!-- CTA Button (Centered, No Inputs) -->
+        <div style="max-width: 300px; margin: 0 auto 4rem;">
+            <button id="start-btn" class="cta-button" style="padding: 1.25rem 2rem; font-size: 1.2rem; box-shadow: 0 15px 30px rgba(255, 20, 147, 0.3);">
+                Start Matching 🚀
+            </button>
         </div>
 
         <!-- Trust Bar -->
@@ -128,42 +114,7 @@
     <!-- Scripts -->
     <script src="config.js"></script>
     
-    <!-- Custom Logic to handle the new inputs directly -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const btn = document.getElementById('start-btn');
-            const name1Input = document.getElementById('name1');
-            const name2Input = document.getElementById('name2');
-
-            btn.addEventListener('click', (e) => {
-                e.preventDefault(); // Prevent default if in form
-                e.stopPropagation(); // Stop script.js from overriding if it listens differently
-
-                const n1 = name1Input.value.trim();
-                const n2 = name2Input.value.trim();
-
-                if(!n1 || !n2) {
-                    alert('Please enter both names!');
-                    return;
-                }
-
-                // Save to localStorage for the next pages
-                localStorage.setItem('crushMatch_yourName', n1);
-                localStorage.setItem('crushMatch_crushName', n2);
-
-                // Button Feedback
-                btn.innerText = "Calculating Vibe... 🔮";
-                btn.style.opacity = "0.8";
-
-                // Direct to Quiz (Skip details.html as we have details)
-                setTimeout(() => {
-                    window.location.href = 'quiz.html';
-                }, 800);
-            });
-        });
-    </script>
-    
-    <!-- Load original script just in case, but our inline logic handles the core flow -->
+    <!-- Main Script handles the button click -> details.html redirect -->
     <script src="script.js"></script> 
 </body>
 </html>

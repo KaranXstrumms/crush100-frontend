@@ -653,3 +653,34 @@ h1, h2, h3 {
     background: var(--primary-color);
     z-index: 100;
 }
+
+/* ===== Backward Compatibility for Details Page ===== */
+.card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    position: relative;
+    z-index: 10;
+}
+
+.card.glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.subtitle {
+    color: var(--text-light);
+    margin-bottom: 2rem;
+}

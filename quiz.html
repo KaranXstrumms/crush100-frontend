@@ -3,36 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrushMatch - Quiz</title>
+    <title>CrushCalc - Quiz 💭</title>
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="background-animation"></div>
     
-    <main class="container">
-        <div class="card glass page-enter" id="quiz-card">
-            <div class="progress-container">
-                <div class="progress-bar" id="progress-bar"></div>
-            </div>
-            <p class="step-indicator">Question <span id="current-step">1</span>/5</p>
+    <!-- Header -->
+    <header class="header">
+        <div class="brand">
+            <span class="brand-icon">💖</span>
+            <span>CrushCalc</span>
+        </div>
+    </header>
 
-            <h1 class="title quiz-title">About Your Crush 💭</h1>
-            <p class="subtitle quiz-subtitle">Answer honestly (or imaginatively 😉)</p>
+    <main class="hero">
+        <div class="input-card glass page-enter" id="quiz-card" style="margin-top: 2rem;">
+            
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar" style="width: 20%;"></div>
+            </div>
+            <p class="step-indicator">Question <span id="current-step">1</span> of 5</p>
+
+            <h1 class="hero-title" style="font-size: 2rem; margin-bottom: 0.5rem;">Vibe Check ✨</h1>
+            <p class="hero-subtitle" style="margin-bottom: 2rem;">Be honest... mostly 😉</p>
             
             <div id="question-container" class="question-container">
                 <!-- Question content injected by JS -->
-                <h2 class="question-text" id="question-text">Loading...</h2>
+                <h2 class="question-text" id="question-text" style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem;">Loading question...</h2>
                 <div class="options-grid" id="options-grid">
                     <!-- Options injected by JS -->
                 </div>
             </div>
 
-            <button class="cta-button" id="next-btn" disabled>Next &rarr;</button>
+            <button class="cta-button" id="next-btn" style="margin-top: 2rem;" disabled>Next Question &rarr;</button>
         </div>
     </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div style="font-size: 0.75rem; color: #999;">
+            © 2026 CrushCalc Inc. Built with love and AI.
+        </div>
+    </footer>
+
     <script src="config.js"></script>
     <script src="quiz.js"></script>
 </body>

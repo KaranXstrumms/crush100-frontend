@@ -3,44 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrushMatch - Result</title>
+    <title>CrushCalc - Compatibility Report 💖</title>
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Extra fix for confetti container */
+        #confetti-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; }
+    </style>
 </head>
 <body>
-    <div class="background-animation"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="brand">
+            <span class="brand-icon">💖</span>
+            <span>CrushCalc</span>
+        </div>
+    </header>
+
     <div id="confetti-container"></div>
-    
-    <main class="container">
-        <div class="card glass page-enter result-card">
-            <h1 class="title">Your Match Result 💖</h1>
-            <p class="subtitle">Here’s what we found...</p>
-            
-            <div class="names-display">
-                ✨ <span id="your-name-display">You</span> ❤️ <span id="crush-name-display">Crush</span> ✨
-            </div>
 
-            <div class="score-container">
-                <svg class="progress-ring" width="160" height="160">
-                    <circle class="progress-ring__circle-bg" stroke="rgba(255,255,255,0.3)" stroke-width="12" fill="transparent" r="70" cx="80" cy="80"/>
-                    <circle class="progress-ring__circle" stroke="#ff1493" stroke-width="12" fill="transparent" r="70" cx="80" cy="80"/>
-                </svg>
-                <div class="score-text">
-                    <span id="score-number">0</span><span class="percent">%</span>
-                    <div class="heart-beat">💕</div>
+    <main class="result-container page-enter">
+        
+        <!-- Sticker -->
+        <div class="match-sticker">IT'S A MATCH!</div>
+
+        <!-- Huge Score -->
+        <h1 class="huge-score">
+            <span id="score-number">0</span>%
+        </h1>
+
+        <p class="score-message">
+            <span id="your-name-display">You</span> & <span id="crush-name-display">Crush</span> are basically written in the stars. ✨
+        </p>
+
+        <!-- Breakdown Grid -->
+        <div class="breakdown-grid">
+            <!-- Romance -->
+            <div class="breakdown-card">
+                <div class="mini-chart">
+                    <svg class="mini-svg" viewBox="0 0 100 100">
+                        <circle class="mini-circle-bg" cx="50" cy="50" r="45"></circle>
+                        <circle class="mini-circle-fg" id="romance-circle" cx="50" cy="50" r="45"></circle>
+                    </svg>
+                    <span class="mini-score-val" id="romance-val">0%</span>
                 </div>
+                <h3 class="breakdown-label">Romance</h3>
+                <p class="breakdown-desc">Sparks are flying everywhere.</p>
             </div>
 
-            <p class="result-message" id="result-message">Calculating compatibility...</p>
-            
-            <div class="action-buttons">
-                <button class="cta-button" id="share-btn">Share Result 📤</button>
-                <button class="secondary-button" id="retry-btn">Try Again 🔄</button>
+            <!-- Communication -->
+            <div class="breakdown-card">
+                <div class="mini-chart">
+                    <svg class="mini-svg" viewBox="0 0 100 100">
+                        <circle class="mini-circle-bg" cx="50" cy="50" r="45"></circle>
+                        <circle class="mini-circle-fg" id="comm-circle" cx="50" cy="50" r="45"></circle>
+                    </svg>
+                    <span class="mini-score-val" id="comm-val">0%</span>
+                </div>
+                <h3 class="breakdown-label">Communication</h3>
+                <p class="breakdown-desc">You speak the same language.</p>
+            </div>
+
+            <!-- Lifestyle -->
+            <div class="breakdown-card">
+                <div class="mini-chart">
+                    <svg class="mini-svg" viewBox="0 0 100 100">
+                        <circle class="mini-circle-bg" cx="50" cy="50" r="45"></circle>
+                        <circle class="mini-circle-fg" id="life-circle" cx="50" cy="50" r="45"></circle>
+                    </svg>
+                    <span class="mini-score-val" id="life-val">0%</span>
+                </div>
+                <h3 class="breakdown-label">Lifestyle</h3>
+                <p class="breakdown-desc">Perfectly synced schedules.</p>
             </div>
         </div>
+
+        <!-- Insight Card -->
+        <div class="insight-card">
+            <div class="insight-image">
+                👩‍❤️‍👨
+            </div>
+            <div class="insight-content">
+                <div class="insight-badge">
+                    <span>✨ AI VIBE CHECK</span>
+                </div>
+                
+                <h2 class="insight-title" id="insight-title">Your vibes are immaculate.</h2>
+                <div class="insight-text" id="result-message">
+                    Calculating compatibility analysis...
+                </div>
+
+                <div class="action-row">
+                    <button class="cta-button" id="share-btn" style="width: auto; padding: 0 2rem;">
+                        Share Result 🚀
+                    </button>
+                    <!-- Extra buttons for aesthetic -->
+                    <button class="btn-icon" title="Save Image">📸</button>
+                    <button class="btn-icon" title="Copy Link">🔗</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sticky Retry -->
+        <div style="padding-bottom: 2rem;">
+            <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">Not feeling it?</p>
+            <button id="retry-btn" style="background: none; border: none; cursor: pointer; color: var(--primary-color); font-weight: 700; font-size: 1rem;">Try Again ↻</button>
+        </div>
+
     </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div style="font-size: 0.75rem; color: #999;">
+            © 2026 CrushCalc Inc. Built with love and AI.
+        </div>
+    </footer>
+
     <script src="config.js"></script>
     <script src="result.js"></script>
 </body>

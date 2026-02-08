@@ -1,45 +1,169 @@
-<!doctype html>
-<!-- Optimized for Vercel Deployment -->
-<!-- Version: 1.0.1 -->
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CrushMatch 💖</title>
-    <meta
-      name="description"
-      content="Check your compatibility with your crush — just for fun!"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="background-animation"></div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrushCalc - AI Compatibility Check 💖</title>
+    <meta name="description" content="Discover your cosmic connection in seconds using our AI vibe check. Minimalist, magical, and 100% Gen-Z approved.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Inline fix for Vercel trailing slash issues -->
+    <script>
+        if (window.location.hash === '#_=_') window.history.replaceState({}, document.title, window.location.pathname);
+    </script>
+</head>
+<body>
 
-    <main class="container">
-      <div class="card glass">
-        <div class="floating-hearts">
-          <span class="heart">💖</span>
-          <span class="heart">💘</span>
-          <span class="heart">💝</span>
+    <!-- Header -->
+    <header class="header">
+        <div class="brand">
+            <span class="brand-icon">💖</span>
+            <span>CrushCalc</span>
         </div>
+        <nav class="nav-links">
+            <a href="#" class="nav-link">How it works</a>
+            <a href="#" class="nav-link">Top Matches</a>
+            <a href="#" class="nav-link">Privacy</a>
+            <button class="btn-login">Login</button>
+        </nav>
+    </header>
 
-        <h1 class="title">CrushMatch <span class="sparkle">✨</span></h1>
-        <p class="subtitle">
-          Check your compatibility with your crush — just for fun 😉
+    <!-- Main Hero Section -->
+    <section class="hero">
+        <!-- Floating hearts for decoration -->
+        <div class="floating-heart" style="top: 10%; left: 5%; font-size: 3rem;">💖</div>
+        <div class="floating-heart" style="bottom: 20%; right: 10%; font-size: 2rem; animation-delay: 2s;">💘</div>
+
+        <div class="badge">✨ AI-POWERED VIBES</div>
+        
+        <h1 class="hero-title">
+            How compatible are you and your <span class="highlight">crush?</span>
+        </h1>
+        
+        <p class="hero-subtitle">
+            Discover your cosmic connection in seconds using our AI vibe check. Minimalist, magical, and 100% Gen-Z approved.
         </p>
 
-        <button class="cta-button" id="start-btn">Start Matching</button>
+        <!-- Main Input Card -->
+        <div class="input-card">
+            <div class="input-grid">
+                <!-- Group 1: Your Name -->
+                <div class="input-group">
+                    <label class="label" for="name1">Your Name</label>
+                    <input type="text" id="name1" class="input-field" placeholder="e.g. Alex" autocomplete="off">
+                </div>
 
-        <p class="disclaimer">This is only for entertainment purposes</p>
-      </div>
-    </main>
+                <!-- Divider -->
+                <div class="heart-divider">💖</div>
+
+                <!-- Group 2: Crush Name -->
+                <div class="input-group">
+                    <label class="label" for="name2">Crush's Name</label>
+                    <input type="text" id="name2" class="input-field" placeholder="e.g. Jordan" autocomplete="off">
+                </div>
+            </div>
+
+            <button id="start-btn" class="cta-button">Check Compatibility 🚀</button>
+        </div>
+
+        <!-- Trust Bar -->
+        <div class="trust-bar">
+            <div class="trust-item">
+                <span class="trust-icon">👥</span> 1.2M+ Scans Today
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">✨</span> 99.9% Vibe Accuracy
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">🔒</span> Privacy Guaranteed
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="feature-card">
+            <div class="feature-icon-box" style="background: #ffe6f2; color: #ff1493;">✨</div>
+            <h3 class="feature-title">AI Vibe Check</h3>
+            <p class="feature-text">Deep analysis of your compatibility based on name harmonics and energy.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon-box" style="background: #e6e6fa; color: #9370db;">🛡️</div>
+            <h3 class="feature-title">Privacy First</h3>
+            <p class="feature-text">Your crushes are safe with us. We never store personal names or history data.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon-box" style="background: #e0f7fa; color: #00bcd4;">📤</div>
+            <h3 class="feature-title">Instant Share</h3>
+            <p class="feature-text">Get a premium result card perfect for your IG story, TikTok, or Twitter.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span style="color: #ff1493;">💖</span> CrushCalc
+            </div>
+            <div class="footer-links">
+                <a href="#" class="footer-link">How it Works</a>
+                <a href="#" class="footer-link">Instagram</a>
+                <a href="#" class="footer-link">Privacy</a>
+                <a href="#" class="footer-link">Terms</a>
+            </div>
+        </div>
+        <div style="margin-top: 2rem; font-size: 0.75rem; color: #999;">
+            © 2026 CrushCalc Inc. Built with love and AI.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
     <script src="config.js"></script>
-    <script src="script.js"></script>
-  </body>
+    
+    <!-- Custom Logic to handle the new inputs directly -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('start-btn');
+            const name1Input = document.getElementById('name1');
+            const name2Input = document.getElementById('name2');
+
+            btn.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent default if in form
+                e.stopPropagation(); // Stop script.js from overriding if it listens differently
+
+                const n1 = name1Input.value.trim();
+                const n2 = name2Input.value.trim();
+
+                if(!n1 || !n2) {
+                    alert('Please enter both names!');
+                    return;
+                }
+
+                // Save to localStorage for the next pages
+                localStorage.setItem('crushMatch_yourName', n1);
+                localStorage.setItem('crushMatch_crushName', n2);
+
+                // Button Feedback
+                btn.innerText = "Calculating Vibe... 🔮";
+                btn.style.opacity = "0.8";
+
+                // Direct to Quiz (Skip details.html as we have details)
+                setTimeout(() => {
+                    window.location.href = 'quiz.html';
+                }, 800);
+            });
+        });
+    </script>
+    
+    <!-- Load original script just in case, but our inline logic handles the core flow -->
+    <script src="script.js"></script> 
+</body>
 </html>

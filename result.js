@@ -4,31 +4,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const crushName = localStorage.getItem('crushMatch_crushName') || 'Crush';
     const answers = JSON.parse(localStorage.getItem('crushMatch_answers') || '{}');
 
-    // DOM Elements
+    // DOM Elements - Updated for New UI
     const yourNameDisplay = document.getElementById('your-name-display');
     const crushNameDisplay = document.getElementById('crush-name-display');
     const scoreNumber = document.getElementById('score-number');
-    const circle = document.querySelector('.progress-ring__circle');
-    const resultMessage = document.getElementById('result-message');
+    const resultMessage = document.getElementById('result-message'); // Insight Text
+    const insightTitle = document.getElementById('insight-title'); // Insight Headline
     const retryBtn = document.getElementById('retry-btn');
     const shareBtn = document.getElementById('share-btn');
 
-    // Set Names
-    yourNameDisplay.textContent = yourName;
-    crushNameDisplay.textContent = crushName;
-
-    // Check Welcome Back
-    if (localStorage.getItem('crushMatch_welcomeBack') === 'true') {
-        const title = document.querySelector('.title');
-        const subtitle = document.querySelector('.subtitle');
-        if (subtitle) {
-            subtitle.innerHTML = `Welcome back 💕 We remembered your last match.`;
-            subtitle.style.color = '#e91e63';
-            subtitle.style.fontWeight = '700';
-            // Clean up flag so it doesn't persist on refresh forever
-            localStorage.removeItem('crushMatch_welcomeBack');
-        }
-    }
+    // Set Names if elements exist
+    if (yourNameDisplay) yourNameDisplay.textContent = yourName;
+    if (crushNameDisplay) crushNameDisplay.textContent = crushName;
 
     // Check for backend result
     const backendResult = JSON.parse(localStorage.getItem('crushMatch_result') || 'null');
@@ -66,73 +53,139 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Animation Logic
-    const radius = circle.r.baseVal.value;
-    const circumference = radius * 2 * Math.PI;
-
-    circle.style.strokeDasharray = `${circumference} ${circumference}`;
-    circle.style.strokeDashoffset = circumference;
-
-    function setProgress(percent) {
-        const offset = circumference - (percent / 100) * circumference;
-        circle.style.strokeDashoffset = offset;
+    // Update Text Content
+    if (resultMessage) resultMessage.textContent = message;
+    
+    // Dynamic Insight Title based on Score
+    if (insightTitle) {
+        if (matchPercentage >= 85) insightTitle.textContent = "Your vibes are immaculate. ✨";
+        else if (matchPercentage >= 70) insightTitle.textContent = "Definitely some chemistry here. 🧪";
+        else if (matchPercentage >= 50) insightTitle.textContent = "Potential is definitely there. 🌱";
+        else insightTitle.textContent = "It’s complicated, but possible. 🤔";
     }
 
-    // Trigger Animations after load
-    setTimeout(() => {
+    // --- ANIMATION LOGIC ---
+
+    // 1. Helper to animate any circle
+    function animateCircle(circleId, labelId, targetVal) {
+        const circle = document.getElementById(circleId);
+        const label = document.getElementById(labelId);
+        
+        // Safety check
+        if (!label) return;
+        if (!circle) {
+            // Just animate number if circle is missing
+            let current = 0;
+            const interval = setInterval(() => {
+                if (current >= targetVal) {
+                    current = targetVal;
+                    clearInterval(interval);
+                }
+                label.textContent = current + "%";
+                current++;
+            }, 10);
+            return;
+        }
+
+        // SVG Circle Logic (r=45, circumference ≈ 283)
+        // Matches CSS: stroke-dasharray: 283
+        const radius = 45;
+        const circumference = 2 * Math.PI * radius;
+        
+        // Reset to empty
+        circle.style.strokeDasharray = `${circumference} ${circumference}`;
+        circle.style.strokeDashoffset = circumference;
+
+        setTimeout(() => {
+            const offset = circumference - (targetVal / 100) * circumference;
+            circle.style.strokeDashoffset = offset;
+        }, 300);
+
         // Animate Number
-        let currentScore = 0;
+        let current = 0;
+        let stepTime = 1500 / (targetVal || 1); 
+        if (targetVal === 0) stepTime = 10;
+
         const interval = setInterval(() => {
-            if (currentScore >= matchPercentage) {
+            if (current >= targetVal) {
+                current = targetVal;
                 clearInterval(interval);
-                resultMessage.innerText = message;
-                resultMessage.classList.add('page-enter'); // Fade in message
-                launchConfetti();
-            } else {
-                currentScore++;
-                scoreNumber.innerText = currentScore;
             }
-        }, 15);
+            label.textContent = current + "%";
+            if (current < targetVal) current++;
+        }, stepTime);
+    }
 
-        // Animate Ring
-        setProgress(matchPercentage);
+    // 2. Generate Simulated Breakdown Scores
+    function fuzzyScore(base, variance) {
+        let val = base + (Math.random() * variance * 2 - variance);
+        return Math.min(100, Math.max(10, Math.floor(val)));
+    }
 
-    }, 300);
+    const romanceScore = fuzzyScore(matchPercentage, 10);
+    const commScore = fuzzyScore(matchPercentage, 15);
+    const lifeScore = fuzzyScore(matchPercentage, 8);
 
+    // 3. Trigger Animations
+    if (scoreNumber) {
+        setTimeout(() => {
+            // Main Huge Score
+            let mainCurrent = 0;
+            const mainInterval = setInterval(() => {
+                if (mainCurrent >= matchPercentage) {
+                    mainCurrent = matchPercentage;
+                    clearInterval(mainInterval);
+                    launchConfetti();
+                }
+                scoreNumber.textContent = mainCurrent;
+                if (mainCurrent < matchPercentage) mainCurrent++;
+            }, 15);
+
+            // Sub-scores
+            animateCircle('romance-circle', 'romance-val', romanceScore);
+            animateCircle('comm-circle', 'comm-val', commScore);
+            animateCircle('life-circle', 'life-val', lifeScore);
+
+        }, 300);
+    }
 
     // Button Handlers
-    retryBtn.addEventListener('click', () => {
-        localStorage.clear();
-        window.location.href = 'index.html';
-    });
+    if (retryBtn) {
+        retryBtn.addEventListener('click', () => {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        });
+    }
 
-    shareBtn.addEventListener('click', () => {
-        const text = `I matched ${matchPercentage}% with my crush on CrushMatch! 💖 Check yours now!`;
-        if (navigator.share) {
-            navigator.share({
-                title: 'CrushMatch Result',
-                text: text,
-                url: window.location.href
-            }).catch(console.error);
-        } else {
-            // Fallback
-            alert("Result copied to clipboard: " + text);
-            navigator.clipboard.writeText(text);
-        }
-    });
+    if (shareBtn) {
+        shareBtn.addEventListener('click', () => {
+            const text = `I matched ${matchPercentage}% with my crush on CrushMatch! 💖 Check yours now!`;
+            if (navigator.share) {
+                navigator.share({
+                    title: 'CrushMatch Result',
+                    text: text,
+                    url: window.location.href
+                }).catch(console.error);
+            } else {
+                // Fallback
+                alert("Result copied to clipboard: " + text);
+                navigator.clipboard.writeText(text);
+            }
+        });
+    }
 
     // Confetti Effect
     function launchConfetti() {
         const colors = ['#ff69b4', '#9370db', '#87cefa', '#ffd700', '#ff1493'];
         const confettiContainer = document.getElementById('confetti-container');
+        if (!confettiContainer) return;
         
         for (let i = 0; i < 50; i++) {
             const confetti = document.createElement('div');
             confetti.classList.add('confetti');
             
             // Random properties
-            const left = Math.random() * 100 + 'vw';
-            const animDuration = Math.random() * 3 + 2 + 's';
+            const left = Math.random() * 95 + 'vw';
             const bg = colors[Math.floor(Math.random() * colors.length)];
             
             confetti.style.left = left;
@@ -150,8 +203,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             confettiContainer.appendChild(confetti);
-            
-            // Cleanup
             setTimeout(() => confetti.remove(), 4000);
         }
     }

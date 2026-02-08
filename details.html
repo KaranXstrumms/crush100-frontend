@@ -3,37 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrushMatch - Your Details</title>
+    <title>CrushCalc - Enter Details 💑</title>
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        /* Additional page-specific styles if needed */
+        .step-inactive { opacity: 0.5; font-weight: 500; }
+        .details-container { max-width: 500px; margin: 0 auto; text-align: center; }
+        .input-label { display: block; text-align: left; margin-bottom: 0.5rem; font-weight: 700; color: var(--text-dark); margin-left: 0.5rem; }
+        .input-container { margin-bottom: 1.5rem; }
+    </style>
 </head>
 <body>
-    <div class="background-animation"></div>
-    
-    <main class="container">
-        <div class="card glass page-enter">
-            <h1 class="title">Let’s Begin 💕</h1>
-            <p class="subtitle">Tell us about you and your crush</p>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="brand">
+            <span class="brand-icon">💖</span>
+            <span>CrushCalc</span>
+        </div>
+        <nav class="nav-links">
+            <a href="#" class="nav-link">How it works</a>
+            <a href="#" class="nav-link">Privacy</a>
+            <button class="btn-login" style="background:var(--primary-color);color:white;border:none;">Sign In</button>
+        </nav>
+    </header>
+
+    <main class="hero" style="padding-top: 1rem;">
+        
+        <!-- Progress Steps -->
+        <div class="progress-steps">
+            <span class="step-active"><span class="step-number" style="background:#ff1493;">1</span> Names</span>
+            <span class="step-inactive"><span class="step-number" style="background:#ddd;color:#666;">2</span> Details</span>
+            <span class="step-inactive"><span class="step-number" style="background:#ddd;color:#666;">3</span> Result</span>
+        </div>
+
+        <!-- Main Card -->
+        <div class="card glass page-enter details-container" style="padding: 3rem 2rem;">
             
+            <h1 class="title" style="margin-bottom: 0.5rem;">Who's the lucky person?</h1>
+            
+            <div class="privacy-badge">
+                <i class="fas fa-lock"></i> 100% Private & Fun • No data is saved
+            </div>
+
             <form id="details-form">
-                <div class="input-group">
-                    <label for="your-name">Your Name</label>
-                    <input type="text" id="your-name" placeholder="Enter your name" autocomplete="off">
+                
+                <!-- Your Name Input -->
+                <div class="input-container">
+                    <label class="input-label" for="your-name">Your Name</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" id="your-name" class="input-field with-icon" placeholder="e.g., Alex" autocomplete="off" style="padding-left: 2.8rem;">
+                    </div>
                 </div>
-                
-                <div class="input-group">
-                    <label for="crush-name">Your Crush’s Name</label>
-                    <input type="text" id="crush-name" placeholder="Enter your crush’s name 😌" autocomplete="off">
+
+                <!-- Crush Name Input -->
+                <div class="input-container">
+                    <label class="input-label" for="crush-name">Crush's Name</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-heart input-icon" style="color: #ff69b4;"></i>
+                        <input type="text" id="crush-name" class="input-field with-icon" placeholder="e.g., Jordan" autocomplete="off" style="padding-left: 2.8rem;">
+                    </div>
                 </div>
-                
-                <!-- Hidden inputs for potential future use or just structure -->
-                
-                <button type="submit" class="cta-button" id="next-btn" disabled>Next &rarr;</button>
+
+                <!-- Action Button -->
+                <button type="submit" class="cta-button" id="next-btn" style="margin-top: 1rem; width: 100%; box-shadow: 0 10px 25px rgba(255, 20, 147, 0.3);">
+                    Find Out Our Spark ⚡
+                </button>
+
             </form>
         </div>
+        
+        <!-- Decoration -->
+        <div class="floating-heart" style="top: 20%; left: 5%; font-size: 8rem; opacity: 0.2; transform: rotate(-15deg);">💖</div>
+        <div class="floating-heart" style="bottom: 10%; right: 5%; font-size: 6rem; opacity: 0.15; transform: rotate(15deg);">✨</div>
+
     </main>
+
+    <!-- Footer -->
+    <footer class="footer" style="padding: 2rem; margin-top: auto;">
+        <div style="font-size: 0.75rem; color: #999; letter-spacing: 1px;">
+            MADE WITH LOVE BY CRUSHCALC
+        </div>
+        <div style="margin-top: 0.5rem; color: #bbb; font-size: 1.2rem;">
+            <i class="fas fa-share-alt" style="margin-right: 1rem;"></i>
+            <i class="fas fa-question-circle"></i>
+        </div>
+    </footer>
+
     <script src="config.js"></script>
     <script src="details.js"></script>
 </body>
